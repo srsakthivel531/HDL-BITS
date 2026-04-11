@@ -1,10 +1,14 @@
 module top_module (input x, input y, output z);
-wire w1,w2,w3,w4,w5,w6;
-    assign w1=(x^y)&x;
-    assign w2=(~x&~y)|(x&y);
-    assign w5=w1|w2;
-    assign w3=(x^y)&x;
-    assign w4=(~x&~y)|(x&y);
-    assign w6=w3&w4;
-    assign z=(~w5 & w6)|(w5 & ~w6);
+wire z1,z2,z3,z4;
+    module_A a1(x,y,z1);
+    module_B b1(x,y,z2);
+    module_A a2(x,y,z3);
+    module_B b2(x,y,z4);
+assign z=(z1|z2)^(z3&z4);
+endmodule
+module module_A (input x, input y, output z);
+    assign z=(x^y)&x;
+endmodule
+module module_B ( input x, input y, output z );
+assign z=~(x^y);
 endmodule
