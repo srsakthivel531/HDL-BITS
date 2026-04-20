@@ -10,8 +10,8 @@ module top_module(
 
     always @(*) begin
         case(state)
-            OFF:next_state<=j?ON:OFF;
-            ON:next_state<=k?OFF:ON; 
+            OFF:next_state=j?ON:OFF;
+            ON:next_state=k?OFF:ON; 
         endcase
             // State transition logic
     end
